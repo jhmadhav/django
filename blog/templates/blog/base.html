@@ -1,0 +1,155 @@
+
+{% load staticfiles %}
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/clappr/clappr@latest/dist/clappr.min.js"></script>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<style>
+#headerr{
+    background-color: #f1f1f1;
+  }
+  #footer {
+    background-color: #ffffff;
+  }
+  
+  #main-wrap {
+    background-color: #D9D9D9;
+  }
+  
+  #sidebar {
+    background-color: #d2d2d2;
+  }
+  
+  #content-wrap {
+    background-color: #c5c5c5;
+  }
+  
+  
+  
+  #headerr{
+    min-height: 60px;
+    font-size: 35px;
+  }
+
+  #footer {
+    min-height: 25px;
+    position: fixed;
+    left:0;
+    right:0;
+    bottom: 0;
+  }
+  
+  
+  /* layout */
+ 
+  
+  #sidebar {
+      float: left;
+      overflow-x:hidden;
+      overflow-y: scroll;
+      width: 30%;
+      height:100%;
+      position:fixed;
+      padding:0 0 50px;
+
+      }
+  
+  #content-wrap {
+    float: right;
+      width: 70%;
+      height: auto;
+      padding-right: 0px;
+  }  
+  
+  .scrollable-menu{
+    overflow-x: hidden;
+  }
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+.list-group{
+    width: 380px;
+  }
+</style>
+
+
+
+</head>
+<body>
+
+  <div id="headerr"><center>
+  Mana TV
+  </center></div>
+  <div id="main-wrap">
+    <div id="sidebar">
+    <ul class="list-group scrollable-menu">
+    
+            {% block content %}
+            {% endblock %}
+    </ul>
+</div>
+    <div id="content-wrap">   
+<div id="player"></div>
+  <script>
+    var player = new Clappr.Player({source: "http://smumcdnems03.cdnsrv.jio.com/jiotv.live.cdn.jio.com/Gemini_Music/Gemini_Music_800.m3u8", parentId: "#player",
+  hideMediaControl: true,
+  mediacontrol: {seekbar: "#FFFFFF", buttons: "#FFFFFF"},
+  position: 'bottom-right',
+  autoPlay: true,
+  allowUserInteraction:true,
+height:620,
+width:895,});
+ 
+  function resizePlayer(){
+    var aspectRatio = 9/16,
+    newWidth = document.getElementById('player').parentElement.offsetWidth,
+    newHeight = 2 * Math.round(newWidth * aspectRatio/2);
+    player.resize({width: newWidth, height: newHeight});
+  }
+
+  resizePlayer();
+  window.onresize = resizePlayer;
+  </script>
+  </div>
+  </div>
+  
+  <div id="footer"><center>&copy; Maddy Mama and Mani Mama</center></div>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+  function populate(x){
+    document.getElementById("player").innerHTML="";
+    var player = new Clappr.Player({source: x, parentId: "#player",
+  hideMediaControl: true,
+  mediacontrol: {seekbar: "#FFFFFF", buttons: "#FFFFFF"},
+  position: 'bottom-right',
+  autoPlay: true,
+  allowUserInteraction:true,
+height:600,
+width:800,});
+
+
+  }
+
+
+  function resizePlayer(){
+    var aspectRatio = 9/16,
+    newWidth = document.getElementById('player').parentElement.offsetWidth,
+    newHeight = 2 * Math.round(newWidth * aspectRatio/2);
+    player.resize({width: newWidth, height: newHeight});
+  }
+
+  resizePlayer();
+  window.onresize = resizePlayer;
+
+</script>
+
