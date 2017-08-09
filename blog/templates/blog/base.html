@@ -27,7 +27,10 @@
     background-color: #c5c5c5;
   }
   
-  
+.glyphicon.glyphicon-lock {
+    font-size: 610px;
+}
+
   
   #headerr{
     min-height: 60px;
@@ -89,12 +92,15 @@
   <div id="main-wrap">
     <div id="sidebar">
     <ul class="list-group scrollable-menu">
-    
+
             {% block content %}
             {% endblock %}
     </ul>
 </div>
-    <div id="content-wrap">   
+    
+
+    <div id="content-wrap"> 
+{% if user.is_authenticated %}  
 <div id="player"></div>
   <script>
     var player = new Clappr.Player({source: "http://smumcdnems03.cdnsrv.jio.com/jiotv.live.cdn.jio.com/Gemini_Music/Gemini_Music_800.m3u8", parentId: "#player",
@@ -117,6 +123,13 @@ width:895,});
   window.onresize = resizePlayer;
   </script>
   </div>
+   {% else %}
+
+
+<p> Please login to continue<span class="glyphicon glyphicon-lock"></span></p>
+  {% endif %}
+  
+
   </div>
   
   <div id="footer"><center>&copy; Maddy Mama and Mani Mama</center></div>
